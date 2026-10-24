@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>My Diary</title>
+<title>Jade's Diary</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#92a8d1">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Jade's Diary">
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef1f6;--paper:#fbfcfd;--ink:#2b3650;--muted:#7a869b;--line:#dde4ee;--soft:#f1f4f9;--blue:#92a8d1;--blue-d:#566fa3;--blue-l:#e6ecf7;--tab:#b7c6e2;--tab-ink:#2b3a5e;--sun:#c0566b;--sat:#4f74b3;
@@ -529,6 +536,7 @@ $("#pages").addEventListener("change",function(ev){
   c.getContext("2d").drawImage(im,0,0,c.width,c.height);ent(k).img=c.toDataURL("image/jpeg",.8);save();render()};im.src=r.result};r.readAsDataURL(f);
 });
 render();
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")==0)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script>
 </body>
 </html>
