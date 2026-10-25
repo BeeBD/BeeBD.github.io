@@ -75,7 +75,7 @@ input[type=text],input[type=date],input[type=time]{background:var(--soft);border
 #wrap.port .mcal{flex:none;grid-template-rows:auto repeat(var(--r),auto)}#wrap.port .mcal .cell{aspect-ratio:1/1.26;min-height:0}#wrap.port .mcal .blank{aspect-ratio:1/1.26}
 .edots{position:absolute;left:.35em;top:1.6em;bottom:.2em;display:flex;flex-direction:column;flex-wrap:wrap;align-content:flex-start;gap:.15em .2em;overflow:hidden}.edots i{display:block;flex:none;width:.5em;height:.5em;border-radius:50%}
 #wrap.port .tabs{z-index:3;right:auto;left:.8em;top:auto;bottom:100%;flex-direction:row;align-items:flex-end;gap:.25em}#wrap.port .tab{writing-mode:horizontal-tb;width:auto;height:1.9em;padding:0 .8em .66em;border-radius:0;font-size:.6em;box-shadow:-.1em -.1em .3em rgba(50,70,110,.15)}#wrap.port .tab.on{transform:none;height:2.2em}
-#wrap.port .mbtn{margin-bottom:.2em}#wrap.port .mbtn{margin:0 0 .15em .6em;width:1.5em;height:1.5em}.cell .hdot{position:absolute;top:.3em;right:.3em;width:.55em;height:.55em;border-radius:50%;background:var(--sun)}
+#wrap.port .mbtn{margin-bottom:.2em}#wrap.port .mbtn{margin:0 0 .15em .6em;width:1.5em;height:1.5em}.nav .mbtn{margin:0;position:relative;top:-.1em}.cell .hdot{position:absolute;top:.3em;right:.3em;width:.55em;height:.55em;border-radius:50%;background:var(--sun)}
 .parc{flex:1;min-height:0;display:flex;flex-direction:column;min-height:0;margin-top:.5em;border:0;border-top:1px solid var(--line)}.parc .memo.arc{border:1px solid var(--line);border-top:0}.parc .dw{flex:none;border-bottom:1px solid var(--line)}.parc .memo.arc{flex:1;min-height:0}
 .as .aw{position:absolute;right:.25em;top:50%;transform:translateY(-50%);font-style:normal;font-size:.75em;line-height:1}.astr.h .aw{right:auto;left:50%;top:auto;bottom:.53em;transform:translateX(-50%);font-size:.6em}
 .whab{position:absolute;right:.35em;bottom:.3em;display:flex;gap:.2em;align-items:center;max-width:90%;flex-wrap:nowrap}.whb{flex:none;width:1.7em;height:1.7em;padding:0;border:1px solid var(--line);border-radius:50%;background:var(--paper);font-size:.8em;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.45;filter:grayscale(1)}.whb.on{opacity:1;filter:none;background:var(--blue-l);border-color:var(--blue)}.wd .whn{right:auto;bottom:auto;left:.53em;top:4.9em;max-width:5em;width:5em;white-space:normal;word-break:break-all;line-height:1.25;text-align:center;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
@@ -429,7 +429,7 @@ habit:function(P){
  return P?[hpage?R:L]:[L,R]},
 settings:function(P){
  var HO='<div class="hhalf"><div class="hrt ttl">Holidays</div><hr class="hr"><div class="sset" style="padding-top:.8em"><div class="srow"><button class="btn" data-a="holadd">공휴일 추가</button><button class="btn'+(holDel?' warn':'')+'" data-a="holdel">공휴일 삭제</button></div>'+holList()+'</div>'+holPop()+'</div>';
- var SL=[ph("Settings")+'<div class="sset"><div class="slb">DATA</div><div class="srow"><button class="btn" data-a="sbk">데이터 백업</button><label class="btn sfile">불러오기<input type="file" accept=".json,.txt,application/json,text/plain" data-imp="1"></label><button class="btn" data-a="sshare">공유</button></div><div class="sbr"><div class="bkst'+(bkInfo().over?' over':'')+'">마지막 백업: '+(bkInfo().days==null?'없음':S.bk.replace(/-/g,'.')+' ('+(bkInfo().days==0?'오늘':bkInfo().days+'일 전')+')')+(bkInfo().over?' · 백업할 때가 됐어요':'')+'</div>'+sgoHtml()+'</div><div class="sbw"><textarea class="sbx" data-f="sb" spellcheck="false" placeholder="백업을 누르면 이곳에 데이터가 나타나고 복사돼요. 불러오려면 백업 데이터를 이곳에 붙여넣거나 \'불러오기\'로 파일을 선택하세요.">'+esc(sbText)+'</textarea></div><div class="smsg">'+esc(sbMsg)+'</div></div>'];
+ var SL=[ph("Settings",'<button class="mbtn" data-a="orient" aria-label="가로/세로 모드 전환"><i class="'+(S.orient=="port"?"p":"l")+'"></i></button>')+'<div class="sset"><div class="slb">DATA</div><div class="srow"><button class="btn" data-a="sbk">데이터 백업</button><label class="btn sfile">불러오기<input type="file" accept=".json,.txt,application/json,text/plain" data-imp="1"></label><button class="btn" data-a="sshare">공유</button></div><div class="sbr"><div class="bkst'+(bkInfo().over?' over':'')+'">마지막 백업: '+(bkInfo().days==null?'없음':S.bk.replace(/-/g,'.')+' ('+(bkInfo().days==0?'오늘':bkInfo().days+'일 전')+')')+(bkInfo().over?' · 백업할 때가 됐어요':'')+'</div>'+sgoHtml()+'</div><div class="sbw"><textarea class="sbx" data-f="sb" spellcheck="false" placeholder="백업을 누르면 이곳에 데이터가 나타나고 복사돼요. 불러오려면 백업 데이터를 이곳에 붙여넣거나 \'불러오기\'로 파일을 선택하세요.">'+esc(sbText)+'</textarea></div><div class="smsg">'+esc(sbMsg)+'</div></div>'];
  if(P)return[SL[0].replace('class="sset"','class="sset sdat"')+HO];
  return[SL[0],ph("","")+HO]},
 goal:function(P){
@@ -458,7 +458,7 @@ function posCb(){var o=document.querySelector(".cbp");if(o)o.remove();if(!cbPop)
 function posMdc(){var pp=document.querySelector(".mdl")&&document.querySelector(".rp .pop"),t=document.querySelector('.mdl .mt[data-i="'+editIdx+'"]');if(!pp||!t)return;var c=t.closest(".mc"),w=pp.parentNode,cr=c.getBoundingClientRect(),wr=w.getBoundingClientRect(),fr=document.querySelector(".frame").getBoundingClientRect(),pw=pp.offsetWidth,ph=pp.offsetHeight,top=cr.bottom-wr.top+4,left=cr.left-wr.left;if(cr.bottom+ph+8>fr.bottom)top=cr.top-wr.top-ph-4;left=Math.max(0,Math.min(left,wr.width-pw));pp.style.top=top+"px";pp.style.left=left+"px"}
 function render(){
  fixState();
- $("#tabs").innerHTML=TABS.map(function(t){return '<button class="tab'+(t[0]==tab?' on':'')+'" data-t="'+t[0]+'">'+t[1]+(t[0]=="settings"&&bkInfo().over?'<i class="bkd"></i>':'')+'</button>'}).join("")+'<button class="mbtn" data-mode="1" aria-label="가로/세로 모드 전환" title="가로/세로 모드 (임시)"><i class="'+(S.orient=="port"?"p":"l")+'"></i></button>';
+ $("#tabs").innerHTML=TABS.map(function(t){return '<button class="tab'+(t[0]==tab?' on':'')+'" data-t="'+t[0]+'">'+t[1]+(t[0]=="settings"&&bkInfo().over?'<i class="bkd"></i>':'')+'</button>'}).join("");
  var PM=S.orient=="port"&&(tab=="monthly"||tab=="weekly"||tab=="daily"||tab=="habit"||tab=="goal"||tab=="settings");$("#wrap").classList.toggle("port",PM);$("#wrap").classList.toggle("psm",PM&&tab!="monthly");
  var v;try{v=V[tab](PM)}catch(err){v=['<div class="empty">이 페이지를 표시하지 못했어요. ('+esc(String(err.message))+')</div>','']}
  $("#pages").innerHTML='<section class="pg">'+v[0]+'</section>'+(v.length>1?'<section class="pg">'+v[1]+'</section>':'');
@@ -467,7 +467,7 @@ function render(){
 }
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,5)}
 function curG(){return S.g.filter(function(x){return x.id==selG})[0]}
-$("#tabs").addEventListener("click",function(ev){var m=ev.target.closest(".mbtn");if(m){S.orient=S.orient=="port"?"land":"port";save();render();return}var b=ev.target.closest(".tab");if(b){tab=b.dataset.t;render()}});
+$("#tabs").addEventListener("click",function(ev){var b=ev.target.closest(".tab");if(b){tab=b.dataset.t;render()}});
 $("#pages").addEventListener("click",function(ev){
  var b=ev.target.closest("[data-a]");if(!b||Date.now()-noClick<500)return;if(b.dataset.a=="mck"&&ev.target.closest&&ev.target.closest('.mt[contenteditable="true"]'))return;var pi0=document.querySelector(".pop input[data-in]");if(pi0)popText=pi0.value;var a=b.dataset.a,k=K(cur),dk=b.dataset.k;if(a!="mdel")moodDel="";if(a!="mpa"&&a!="mpk")moodPick=false;if(a!="hrc")hrPop=-1;
  if(a=="gy"){gy+=+b.dataset.d;render();return}
@@ -500,6 +500,7 @@ $("#pages").addEventListener("click",function(ev){
  else if(a=="mpa"){var me=b.dataset.e,ml2=mList(k),mi=ml2.indexOf(me);if(mi<0)ml2.push(me);else ml2.splice(mi,1);mSet(k,ml2)}
  else if(a=="mdel"){mSet(k,mList(k).filter(function(x){return x!==b.dataset.e}));moodDel=""}
  else if(a=="celeb"){celeb=false}
+ else if(a=="orient"){S.orient=S.orient=="port"?"land":"port";lastShape=curShape();save()}
  else if(a=="sfile"){if(inSandbox()){sbMsg="이 페이지(Claude 안)에서는 파일 저장이 막혀 있어요. 설치한 앱에서 사용하세요."}else{try{var bf=bkFile(),bu=URL.createObjectURL(bf),ba=document.createElement("a");ba.href=bu;ba.download=bf.name;document.body.appendChild(ba);ba.click();setTimeout(function(){document.body.removeChild(ba);URL.revokeObjectURL(bu)},1000);S.bk=todayK;sbMsg="파일을 저장했어요. 다운로드 폴더의 "+bf.name+" 파일을 안전한 곳에 보관하세요."}catch(e){sbMsg="파일 저장에 실패했어요."}}}
  else if(a=="sshare"){var sf;try{sf=bkFile()}catch(e){sf=null}if(!sf||!navigator.share||!navigator.canShare||!navigator.canShare({files:[sf]})||inSandbox()){sbMsg="이 화면에서는 공유를 쓸 수 없어요. 설치한 앱의 안드로이드 크롬에서 사용하세요."}else{navigator.share({files:[sf],title:"Jade's Diary 백업"}).then(function(){bkDone("공유했어요. 받는 곳에 파일이 저장됐는지 확인하세요.")},function(){});sbMsg="공유 창을 열었어요."}}
  else if(a=="sbk"){S.bk=todayK;sbText=JSON.stringify(S);impArm=false;impReady=false;bkReady=true;sbMsg="백업 데이터를 만들었어요. 아래 텍스트를 복사하거나 오른쪽 위 파일로 저장 버튼을 누르세요.";try{navigator.clipboard.writeText(sbText).then(function(){sbMsg="백업 데이터를 복사했어요. 메모 앱 등에 붙여넣어 보관하세요.";render()},function(){})}catch(e){}}
@@ -627,6 +628,13 @@ $("#pages").addEventListener("change",function(ev){
   var s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
   c.getContext("2d").drawImage(im,0,0,c.width,c.height);ent(k).img=c.toDataURL("image/jpeg",.8);save();render()};im.src=r.result};r.readAsDataURL(f);
 });
+var lastShape=null;
+function curShape(){try{if(screen.orientation&&screen.orientation.type&&matchMedia("(pointer:coarse)").matches)return screen.orientation.type.indexOf("portrait")==0?"port":"land"}catch(e){}return window.innerHeight>window.innerWidth?"port":"land"}
+function autoOri(){var ae=document.activeElement;if(ae&&(/^(INPUT|TEXTAREA)$/.test(ae.tagName)||ae.isContentEditable))return;var sh=curShape();if(sh===lastShape)return;lastShape=sh;if(S.orient!==sh){S.orient=sh;save();render()}}
+["resize","orientationchange"].forEach(function(n){window.addEventListener(n,function(){setTimeout(autoOri,150)})});
+try{screen.orientation.addEventListener("change",function(){setTimeout(autoOri,150)})}catch(e){}
+document.addEventListener("focusout",function(){setTimeout(autoOri,400)});
+lastShape=curShape();S.orient=lastShape;
 render();
 if("serviceWorker" in navigator&&location.protocol.indexOf("http")==0)navigator.serviceWorker.register("sw.js").catch(function(){});
 </script>
