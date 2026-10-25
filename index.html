@@ -628,6 +628,8 @@ $("#pages").addEventListener("change",function(ev){
   var s=Math.min(1,400/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);
   c.getContext("2d").drawImage(im,0,0,c.width,c.height);ent(k).img=c.toDataURL("image/jpeg",.8);save();render()};im.src=r.result};r.readAsDataURL(f);
 });
+(function(){try{var inst=matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: minimal-ui)").matches;if(!inst||!document.documentElement.requestFullscreen)return;
+ document.addEventListener("pointerup",function(){if(document.fullscreenElement)return;try{var r=document.documentElement.requestFullscreen({navigationUI:"hide"});if(r&&r.catch)r.catch(function(){})}catch(e){}})}catch(e){}})();
 var lastShape=null;
 function curShape(){try{if(screen.orientation&&screen.orientation.type&&matchMedia("(pointer:coarse)").matches)return screen.orientation.type.indexOf("portrait")==0?"port":"land"}catch(e){}return window.innerHeight>window.innerWidth?"port":"land"}
 function autoOri(){var ae=document.activeElement;if(ae&&(/^(INPUT|TEXTAREA)$/.test(ae.tagName)||ae.isContentEditable))return;var sh=curShape();if(sh===lastShape)return;lastShape=sh;if(S.orient!==sh){S.orient=sh;save();render()}}
